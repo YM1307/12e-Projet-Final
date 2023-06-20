@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projet Final</title>
+</head>
+<style>
+    body
+        {
+            background-color: rgb(68, 233, 84);
+        }
+
+    .Container
+        {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr); 
+        }
+
+    .game
+        {
+            background-color: rgb(53, 195, 67);
+            width: 150px;
+            height: 150px;
+            text-align: center;
+            border-radius: 20%;
+            padding: 10%;
+        }
+    
+    .label
+        {
+            margin-block-start: 40%;
+        }
+
+</style>
+<body>
+    <div class="Container">
+        <div class="game">
+            <label class ="lebel" for="Jeu_43">Problème d'anniversaire</label>
+            <button id= "Jeu_43" onclick="Jeu_43()">Jeu 43</button>
+        </div>
+
+        <div class="game">
+            <label for="Jeu_44">Jeux de dés</label>
+            <button id= "Jeu_44" onclick="Jeu_44()">Jeu 44</button>
+            <br><br>
+            <label for="Rules">Rules</label>
+            <button id= "Rules" onclick="Rules()">Rules</button>
+            </div>
+    </div>
+</body>
+<script>
+    function Jeu_43()
+        {
+            var a = parseInt(prompt("Combien de personne sont dans la salle? "));
+            var c = 1;
+
+            for (var i=0; i<a; i++)
+                {var b = (365 - (i+1))/(365);
+                c = c * b;}
+
+            var d = String((100 - (c*100)).toFixed(2));
+            alert("La chance que 2 personnes ont le même anniverssaire dans une salle de  " + a + " est  " + d + "%");
+        }
+
+    function Jeu_44()
+        {
+            
+            function Game()
+                {
+                    var chosen = parseInt(prompt("Choisissez un chiffre entre 5 et 9: "));
+                    if (chosen>=5 && chosen <=9)
+                        {
+                            var f = Math.floor(Math.random()*6)+1;
+                            var s = Math.floor(Math.random()*6)+1;
+                            var played = f + s;
+
+                            if (played == chosen)
+                                {alert("Vous avez jouer votre principale, Bravo!");}
+
+                            else
+                                {
+                                    alert("Vous n'avez pas jouer le principale");
+
+                                    if (played == 2 || played == 3)
+                                        {alert("Vous avez jouer un " +  played+ " malheureusement vous avez perdu");}
+
+                                    else if (played == 11 || played == 12)
+                                        {
+                                            if (chosen == 5 || chosen == 9)
+                                            {alert("Vous avez jouer un " +  played+ " malheureusement vous avez perdu");}
+                                            else if (chosen == 6 || chosen == 8)
+                                                {alert("Vous avez jouer un " +  played);
+
+                                                if (played == 11)
+                                                    {alert("Vous avez perdu");}
+
+                                                else if (played == 12)
+                                                    {alert("Vous avez gagner");}}
+
+                                            else if (chosen == 7)
+                                                {alert("Vous avez joué un " +  played);
+
+                                                if (played == 12)
+                                                    {alert("Vous avez perdu");}
+
+                                                else if (played == 11)
+                                                    {alert("Vous avez gagner");}}
+                                        }
+
+
+                                    else
+                                        {alert("Vous avez joué un " +  played+ " il est temps de joué au chance");
+                                        alert("Votre chance est " +  played);
+
+                                        chance_loop = true;
+                                        while (chance_loop == true)
+                                            {chance_loop = false;
+                                            var n = Math.floor(Math.random()*6)+1 + Math.floor(Math.random()*6)+1;
+                                            alert("Vous avez joué un " +  n);
+                                            if (n == played)
+                                                {alert("Vous avez gagné!");}
+
+                                            else if (n == chosen)
+                                                {alert("Vous avez perdu");}
+
+                                            else
+                                                {alert("try again");
+                                                chance_loop = true;}}}
+                                }
+                            
+                        }
+
+                    else    
+                        {
+                            alert("Le Principale doit être entre 5 & 9");
+                        }
+                }
+
+            var play=0;
+
+            while (play==0)
+                {
+                    Game();
+
+                var r = String(prompt("Voulez-vous recommencer?:"));
+
+                if (r == "oui" || r == "Oui")
+                    {play=0;}
+
+                else
+                    {alert("Merci d'avoir joué!")
+                    play=1;}}
+        }
+
+    function Rules()
+        {
+            alert("Au début de chaque partie, le joueur spécifie un nombre compris entre 5 et 9 inclus."
+            + " C’est ce qu’on appelle le principal. Le joueur lance alors deux dés. Si le principal est"
+            + " lancé, le joueur gagne. Si un 2 ou un 3 est lancé, le joueur perd. Si un 11 ou un 12 est" 
+            + " lancé, le résultat dépend du principal: Avec un principal de 5 ou 9, le joueur perd Avec"
+            + " un principal de 6 ou 8, le joueur perd avec un 11, mais gagne avec un 12. Avec un principal"
+            + " de 7, le joueur gagne avec un 11, mais perd avec un 12. Si un autre numéro est lancé, alors"
+            + " c’est ce qu’on appelle la chance. Le joueur lance à nouveaules dés: Si la chance est lancée," 
+            + " le joueur gagne. Si le principal est lancé, le joueur perd. Le joueur continue de rouler"
+            + " jusqu’à ce qu’il ait la chance ou le principal."
+            
+            )
+        }
+</script>
+</html>
